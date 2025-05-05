@@ -12,12 +12,12 @@ export default function ApiDocs() {
 
   useEffect(() => {
     fetch('/api/docs')
-      .then(res => {
+      .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch API documentation');
         return res.json();
       })
-      .then(data => setSpec(data))
-      .catch(err => {
+      .then((data) => setSpec(data))
+      .catch((err) => {
         console.error('Error loading API docs:', err);
         setError(err.message);
       });
@@ -39,5 +39,6 @@ export default function ApiDocs() {
     );
   }
 
+  // Avoid strict mode errors by wrapping SwaggerUI with client-side hydration
   return <SwaggerUI spec={spec} />;
 }
